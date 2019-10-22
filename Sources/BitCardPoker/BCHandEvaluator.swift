@@ -1,11 +1,3 @@
-//
-//  BCHandEvaluator.swift
-//  BitCardPoker
-//
-//  Created by William Oropallo on 10/20/19.
-//  Copyright © 2019 Oropallo Dev. All rights reserved.
-//
-
 class BCHandEvaluator {
     typealias Ranks = (BCRank, BCRank, BCRank, BCRank, BCRank)
     typealias Suits = (BCSuit, BCSuit, BCSuit, BCSuit, BCSuit)

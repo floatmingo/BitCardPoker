@@ -1,11 +1,3 @@
-//
-//  BCUtility.swift
-//  BitCardPoker
-//
-//  Created by William Oropallo on 10/22/19.
-//  Copyright © 2019 Oropallo Dev. All rights reserved.
-//
-
 class BCUtility {
     static func makeCardArray(from input: String) -> [BCCard]? {
         var cards: [BCCard] = Array()

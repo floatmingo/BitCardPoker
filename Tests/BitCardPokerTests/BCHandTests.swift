@@ -1,11 +1,3 @@
-//
-//  BCHandTests.swift
-//  BitCardPokerTests
-//
-//  Created by William Oropallo on 10/22/19.
-//  Copyright © 2019 Oropallo Dev. All rights reserved.
-//
-
 import XCTest
 @testable import BitCardPoker
 
