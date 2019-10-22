@@ -1,3 +1,3 @@
 # BitCardPoker
 
-A description of this package.
+A Lightweight Poker Library for Swift
