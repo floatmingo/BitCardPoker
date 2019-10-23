@@ -1,4 +1,4 @@
-public  class BCHand7: BCHand {
+public class BCHand7: BCHand {
     public let score: BCPokerScore
     
     public init?(cards: [BCCard]) {
@@ -11,6 +11,12 @@ public  class BCHand7: BCHand {
         }
         
         self.score = maxScore
+    }
+    
+    public func showdown(with otherHand: BCHand7) -> BCWinState {
+        if (self > otherHand) { return .win }
+        if (self < otherHand) { return .lose }
+        return .draw
     }
 }
 

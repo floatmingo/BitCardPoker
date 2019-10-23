@@ -64,9 +64,8 @@ class BCHandTests: XCTestCase {
         let kerry = BCHand7(cards: kerryCards)!
         let royalFlush = BCHand5(cards: royalFlushCards)!
         
-        XCTAssertEqual(ted.showdownResults(with: kerry), .win)
-        XCTAssertEqual(kerry.showdownResults(with: ted), .lose)
-        XCTAssertEqual(royalFlush.showdownResults(with: ted), .win)
-        XCTAssertEqual(royalFlush.showdownResults(with: royalFlush), .draw)
+        XCTAssertEqual(ted.showdown(with: kerry), .win)
+        XCTAssertEqual(kerry.showdown(with: ted), .lose)
+        XCTAssertEqual(royalFlush.showdown(with: royalFlush), .draw)
     }
 }

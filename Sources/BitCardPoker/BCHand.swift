@@ -22,16 +22,4 @@ extension BCHand {
     public static func == (lhs: Self, rhs: Self) -> Bool {
         return lhs.score == rhs.score
     }
-    
-    public func showdown<T: BCHand>(with otherHand: T) -> BCWinState {
-        if (self.score > otherHand.score) {
-            return .win
-        }
-        
-        if (self.score < otherHand.score) {
-            return .lose
-        }
-        
-        return .draw
-    }
 }
