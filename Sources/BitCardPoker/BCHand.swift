@@ -1,5 +1,6 @@
 protocol BCHand: class, Comparable {
     var score: BCPokerScore { get }
+    var category: BCPokerCategory { get }
 }
 
 extension BCHand {

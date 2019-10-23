@@ -1,5 +1,6 @@
 public class BCHand7: BCHand {
     public let score: BCPokerScore
+    public let category: BCPokerCategory
     
     public init?(cards: [BCCard]) {
         if (cards.count != 7) { return nil }
@@ -11,6 +12,7 @@ public class BCHand7: BCHand {
         }
         
         self.score = maxScore
+        self.category = BCPokerScoreMaker.category(of: score) ?? .highCard
     }
     
     public func showdown(with otherHand: BCHand7) -> BCWinState {
