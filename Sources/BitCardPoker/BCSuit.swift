@@ -33,7 +33,7 @@ extension BCSuit: CustomStringConvertible {
         }
     }
     
-    public var characterIcon: String {
+    public var character: Character {
         get {
             switch self {
             case .hearts:   return "♥"
