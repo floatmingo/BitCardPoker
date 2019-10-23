@@ -1,4 +1,4 @@
-enum BCPokerCategory: UInt32 {
+public enum BCPokerCategory: UInt32 {
     case highCard = 1
     case onePair
     case twoPair

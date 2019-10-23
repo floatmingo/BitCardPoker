@@ -9,27 +9,27 @@ protocol BCHand: class, Comparable {
 }
 
 extension BCHand {
-    static func < (lhs: Self, rhs: Self) -> Bool {
+    public static func < (lhs: Self, rhs: Self) -> Bool {
         return lhs.score < rhs.score
     }
     
-    static func <= (lhs: Self, rhs: Self) -> Bool {
+    public static func <= (lhs: Self, rhs: Self) -> Bool {
         return lhs.score <= rhs.score
     }
     
-    static func >= (lhs: Self, rhs: Self) -> Bool {
+    public static func >= (lhs: Self, rhs: Self) -> Bool {
         return lhs.score >= rhs.score
     }
     
-    static func > (lhs: Self, rhs: Self) -> Bool {
+    public static func > (lhs: Self, rhs: Self) -> Bool {
         return lhs.score > rhs.score
     }
     
-    static func == (lhs: Self, rhs: Self) -> Bool {
+    public static func == (lhs: Self, rhs: Self) -> Bool {
         return lhs.score == rhs.score
     }
     
-    func showdownResults<T: BCHand>(with otherHand: T) -> BCWinState {
+    public func showdownResults<T: BCHand>(with otherHand: T) -> BCWinState {
         if (self.score > otherHand.score) {
             return .win
         }

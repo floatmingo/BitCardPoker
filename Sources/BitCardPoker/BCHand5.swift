@@ -1,7 +1,7 @@
-class BCHand5: BCHand {
-    let score: BCPokerScore
+public class BCHand5: BCHand {
+    public let score: BCPokerScore
     
-    init?(cards: [BCCard]) {
+    public init?(cards: [BCCard]) {
         if (cards.count != 5) { return nil }
         self.score = BCHandEvaluator.score(for: cards)
     }

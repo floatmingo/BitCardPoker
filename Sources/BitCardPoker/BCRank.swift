@@ -1,4 +1,4 @@
-enum BCRank: UInt32, Comparable, CaseIterable {
+public enum BCRank: UInt32, Comparable, CaseIterable {
     case two    = 2
     case three
     case four
@@ -13,19 +13,19 @@ enum BCRank: UInt32, Comparable, CaseIterable {
     case king
     case ace    = 14
     
-    static func < (lhs: BCRank, rhs: BCRank) -> Bool {
+    public static func < (lhs: BCRank, rhs: BCRank) -> Bool {
         return lhs.rawValue < rhs.rawValue
     }
     
-    static func <= (lhs: BCRank, rhs: BCRank) -> Bool {
+    public static func <= (lhs: BCRank, rhs: BCRank) -> Bool {
         return lhs.rawValue <= rhs.rawValue
     }
     
-    static func >= (lhs: BCRank, rhs: BCRank) -> Bool {
+    public static func >= (lhs: BCRank, rhs: BCRank) -> Bool {
         return lhs.rawValue >= rhs.rawValue
     }
     
-    static func > (lhs: BCRank, rhs: BCRank) -> Bool {
+    public static func > (lhs: BCRank, rhs: BCRank) -> Bool {
         return lhs.rawValue > rhs.rawValue
     }
     
@@ -49,7 +49,7 @@ enum BCRank: UInt32, Comparable, CaseIterable {
 }
 
 extension BCRank: CustomStringConvertible {
-    var description: String {
+    public var description: String {
         switch self {
         case .ace:      return "A"
         case .two:      return "2"

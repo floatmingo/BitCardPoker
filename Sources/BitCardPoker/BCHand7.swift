@@ -1,7 +1,7 @@
-class BCHand7: BCHand {
-    let score: BCPokerScore
+public  class BCHand7: BCHand {
+    public let score: BCPokerScore
     
-    init?(cards: [BCCard]) {
+    public init?(cards: [BCCard]) {
         if (cards.count != 7) { return nil }
         var maxScore = BCPokerScoreMaker.none
         

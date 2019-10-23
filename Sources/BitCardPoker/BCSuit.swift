@@ -1,28 +1,28 @@
-enum BCSuit: UInt8, Comparable, CaseIterable {
+public enum BCSuit: UInt8, Comparable, CaseIterable {
     case hearts
     case diamonds
     case clubs
     case spades
     
-    static func < (lhs: BCSuit, rhs: BCSuit) -> Bool {
+    public static func < (lhs: BCSuit, rhs: BCSuit) -> Bool {
         return lhs.rawValue < rhs.rawValue
     }
     
-    static func <= (lhs: BCSuit, rhs: BCSuit) -> Bool {
+    public static func <= (lhs: BCSuit, rhs: BCSuit) -> Bool {
         return lhs.rawValue <= rhs.rawValue
     }
     
-    static func >= (lhs: BCSuit, rhs: BCSuit) -> Bool {
+    public static func >= (lhs: BCSuit, rhs: BCSuit) -> Bool {
         return lhs.rawValue >= rhs.rawValue
     }
     
-    static func > (lhs: BCSuit, rhs: BCSuit) -> Bool {
+    public static func > (lhs: BCSuit, rhs: BCSuit) -> Bool {
         return lhs.rawValue > rhs.rawValue
     }
 }
 
 extension BCSuit: CustomStringConvertible {
-    var description: String {
+    public var description: String {
         get {
             switch self {
             case .hearts:   return "H"
@@ -33,7 +33,7 @@ extension BCSuit: CustomStringConvertible {
         }
     }
     
-    var characterIcon: String {
+    public var characterIcon: String {
         get {
             switch self {
             case .hearts:   return "♥"
