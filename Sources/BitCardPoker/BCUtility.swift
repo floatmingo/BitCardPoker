@@ -53,17 +53,9 @@ public class BCUtility {
 
     private static let BC = BinomialCoefficient()
     private static func combinationsHelper<T>(from array: ArraySlice<T>, ofSize k: Int) -> [[T]] {
-        if (k <= 0 || array.count < k) {
-            return []
-        }
-        
-        if (k == 1) {
-            return array.map { [$0] }
-        }
-        
-        if (array.count == k) {
-            return [Array(array)]
-        }
+        if (k <= 0 || array.count < k) { return [] }
+        if (k == 1) { return array.map { [$0] } }
+        if (array.count == k) { return [Array(array)] }
         
         var index = 0
         var outArray: [[T]] = Array()
@@ -72,15 +64,40 @@ public class BCUtility {
             let combos = combinationsHelper(from: array.dropFirst(index + 1), ofSize: k - 1)
             index += 1
             
-            for combo in combos {
-                outArray.append([item] + combo)
-            }
+            for combo in combos { outArray.append([item] + combo) }
         }
         
         
         return outArray
     }
     
+    static func combinations7to5<T>(from array: [T]) -> [[T]] {
+        if array.count != 7 { return [] }
+        
+        return [
+            [array[0], array[1], array[2], array[3], array[4]],
+            [array[0], array[1], array[2], array[3], array[5]],
+            [array[0], array[1], array[2], array[3], array[6]],
+            [array[0], array[1], array[2], array[4], array[5]],
+            [array[0], array[1], array[2], array[4], array[6]],
+            [array[0], array[1], array[2], array[5], array[6]],
+            [array[0], array[1], array[3], array[4], array[5]],
+            [array[0], array[1], array[3], array[4], array[6]],
+            [array[0], array[1], array[3], array[5], array[6]],
+            [array[0], array[1], array[4], array[5], array[6]],
+            [array[0], array[2], array[3], array[4], array[5]],
+            [array[0], array[2], array[3], array[4], array[6]],
+            [array[0], array[2], array[3], array[5], array[6]],
+            [array[0], array[2], array[4], array[5], array[6]],
+            [array[0], array[3], array[4], array[5], array[6]],
+            [array[1], array[2], array[3], array[4], array[5]],
+            [array[1], array[2], array[3], array[4], array[6]],
+            [array[1], array[2], array[3], array[5], array[6]],
+            [array[1], array[2], array[4], array[5], array[6]],
+            [array[1], array[3], array[4], array[5], array[6]],
+            [array[2], array[3], array[4], array[5], array[6]]
+        ]
+    }
 }
 
 fileprivate class BinomialCoefficient {
