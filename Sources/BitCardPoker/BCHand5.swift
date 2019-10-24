@@ -1,4 +1,4 @@
-public class BCHand5: BCHand {
+public class BCHand5: BCPokerable {
     public let score: BCPokerScore
     public let category: BCPokerCategory
     
@@ -12,5 +12,25 @@ public class BCHand5: BCHand {
         if (self > otherHand) { return .win }
         if (self < otherHand) { return .lose }
         return .draw
+    }
+    
+    public static func < (lhs: BCHand5, rhs: BCHand5) -> Bool {
+        return lhs.score < rhs.score
+    }
+    
+    public static func <= (lhs: BCHand5, rhs: BCHand5) -> Bool {
+        return lhs.score <= rhs.score
+    }
+    
+    public static func >= (lhs: BCHand5, rhs: BCHand5) -> Bool {
+        return lhs.score >= rhs.score
+    }
+    
+    public static func > (lhs: BCHand5, rhs: BCHand5) -> Bool {
+        return lhs.score > rhs.score
+    }
+    
+    public static func == (lhs: BCHand5, rhs: BCHand5) -> Bool {
+        return lhs.score == rhs.score
     }
 }
