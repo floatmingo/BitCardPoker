@@ -47,30 +47,64 @@ public class BCUtility {
     }
     
     
-    static func combinations<T>(from array: [T], ofSize r: Int) -> [[T]] {
-        return combinationsHelper(from: array.dropFirst(0), ofSize: r)
+    static func combinations<T>(from array: [T], ofSize k: Int) -> [[T]] {
+        return combinationsHelper(from: array.dropFirst(0), ofSize: k)
     }
-    
-    private static func combinationsHelper<T>(from array: ArraySlice<T>, ofSize r: Int) -> [[T]] {
-        if (r <= 0 || array.count < r) {
+
+    private static let BC = BinomialCoefficient()
+    private static func combinationsHelper<T>(from array: ArraySlice<T>, ofSize k: Int) -> [[T]] {
+        if (k <= 0 || array.count < k) {
             return []
         }
         
-        if (r == 1) {
+        if (k == 1) {
             return array.map { [$0] }
         }
         
-        if (array.count == r) {
+        if (array.count == k) {
             return [Array(array)]
         }
         
         var index = 0
-        return array.reduce([], { result, item in
-            let combos = combinationsHelper(from: array.dropFirst(index + 1), ofSize: r - 1)
+        var outArray: [[T]] = Array()
+        outArray.reserveCapacity(BC.calculate(n: array.count, k: k))
+        for item in array {
+            let combos = combinationsHelper(from: array.dropFirst(index + 1), ofSize: k - 1)
             index += 1
             
-            return result + combos.map { combo in [item] + combo }
-        })
+            for combo in combos {
+                outArray.append([item] + combo)
+            }
+        }
+        
+        
+        return outArray
     }
     
+}
+
+fileprivate class BinomialCoefficient {
+    let size: Int
+    var pascalTriangle: [[Int]]
+    
+    init(size: Int = 25) {
+        self.size = size
+        
+        pascalTriangle = Array(repeating: [], count: size)
+        for i in 0..<size { pascalTriangle[i] = Array(repeating: 0, count: size) }
+        for line in 0..<size {
+            for i in 0...line {
+                if line == i || i == 0 { pascalTriangle[line][i] = 1 }
+                else { pascalTriangle[line][i] = pascalTriangle[line - 1][i - 1] + pascalTriangle[line - 1][i] }
+            }
+        }
+    }
+    
+    func calculate(n: Int, k: Int) -> Int {
+        if n < 0 || k < 0 || n > 25 || k > 25 {
+            return 0
+        }
+        
+        return pascalTriangle[n][k]
+    }
 }
