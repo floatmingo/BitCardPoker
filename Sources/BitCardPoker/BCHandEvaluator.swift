@@ -5,22 +5,24 @@ class BCHandEvaluator {
     static func score(for cards: [BCCard]) -> BCPokerScore {
         if (cards.count != 5) { return BCPokerScoreMaker.none }
         
-        let cardsByRank = cards.sorted { $0.rank < $1.rank }
+        var cardsClone = Array(cards)
+        
+        cardsClone.sort { $0.rank < $1.rank }
         let ranks = (
-            cardsByRank[0].rank,
-            cardsByRank[1].rank,
-            cardsByRank[2].rank,
-            cardsByRank[3].rank,
-            cardsByRank[4].rank
+            cardsClone[0].rank,
+            cardsClone[1].rank,
+            cardsClone[2].rank,
+            cardsClone[3].rank,
+            cardsClone[4].rank
         )
         
-        let cardsBySuit = cards.sorted { $0.suit < $1.suit }
+        cardsClone.sort { $0.suit < $1.suit }
         let suits = (
-            cardsBySuit[0].suit,
-            cardsBySuit[1].suit,
-            cardsBySuit[2].suit,
-            cardsBySuit[3].suit,
-            cardsBySuit[4].suit
+            cardsClone[0].suit,
+            cardsClone[1].suit,
+            cardsClone[2].suit,
+            cardsClone[3].suit,
+            cardsClone[4].suit
         )
         
         let straightFlush = calculateStraightFlush(ranks, suits)
