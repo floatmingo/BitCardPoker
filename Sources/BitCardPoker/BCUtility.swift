@@ -51,7 +51,6 @@ public class BCUtility {
         return combinationsHelper(from: array.dropFirst(0), ofSize: k)
     }
 
-    private static let BC = BinomialCoefficient()
     private static func combinationsHelper<T>(from array: ArraySlice<T>, ofSize k: Int) -> [[T]] {
         if (k <= 0 || array.count < k) { return [] }
         if (k == 1) { return array.map { [$0] } }
@@ -59,7 +58,6 @@ public class BCUtility {
         
         var index = 0
         var outArray: [[T]] = Array()
-        outArray.reserveCapacity(BC.calculate(n: array.count, k: k))
         for item in array {
             let combos = combinationsHelper(from: array.dropFirst(index + 1), ofSize: k - 1)
             index += 1
@@ -97,31 +95,5 @@ public class BCUtility {
             [array[1], array[3], array[4], array[5], array[6]],
             [array[2], array[3], array[4], array[5], array[6]]
         ]
-    }
-}
-
-fileprivate class BinomialCoefficient {
-    let size: Int
-    var pascalTriangle: [[Int]]
-    
-    init(size: Int = 25) {
-        self.size = size
-        
-        pascalTriangle = Array(repeating: [], count: size)
-        for i in 0..<size { pascalTriangle[i] = Array(repeating: 0, count: size) }
-        for line in 0..<size {
-            for i in 0...line {
-                if line == i || i == 0 { pascalTriangle[line][i] = 1 }
-                else { pascalTriangle[line][i] = pascalTriangle[line - 1][i - 1] + pascalTriangle[line - 1][i] }
-            }
-        }
-    }
-    
-    func calculate(n: Int, k: Int) -> Int {
-        if n < 0 || k < 0 || n > 25 || k > 25 {
-            return 0
-        }
-        
-        return pascalTriangle[n][k]
     }
 }
