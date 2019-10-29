@@ -1,16 +1,30 @@
+/// An enum that represents the thirteen ranks of French playing cards.
 public enum BCRank: UInt32, Comparable, CaseIterable {
+    /// The rank of 2 (Value 2)
     case two    = 2
+    /// The rank of 3 (Value 3)
     case three
+    /// The rank of 4 (Value 4)
     case four
+    /// The rank of 5 (Value 5)
     case five
+    /// The rank of 6 (Value 6)
     case six
+    /// The rank of 7 (Value 7)
     case seven
+    /// The rank of 8 (Value 8)
     case eight
+    /// The rank of 9 (Value 9)
     case nine
+    /// The rank of 10 (Value 10)
     case ten
+    /// The rank of Jack (Value 11)
     case jack
+    /// The rank of Queen (Value 12)
     case queen
+    /// The rank of King (Value 13)
     case king
+    /// The rank of Ace (Value 14)
     case ace    = 14
     
     public static func < (lhs: BCRank, rhs: BCRank) -> Bool {
@@ -29,6 +43,7 @@ public enum BCRank: UInt32, Comparable, CaseIterable {
         return lhs.rawValue > rhs.rawValue
     }
     
+    /// The next rank, cycling from Ace to Two
     func next() -> BCRank {
         switch self {
         case .ace:      return .two

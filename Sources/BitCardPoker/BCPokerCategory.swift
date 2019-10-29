@@ -1,3 +1,4 @@
+/// An enum representing the nine categories of poker hand when using a standard 52-card deck
 public enum BCPokerCategory: UInt32, CaseIterable {
     case highCard = 1
     case onePair

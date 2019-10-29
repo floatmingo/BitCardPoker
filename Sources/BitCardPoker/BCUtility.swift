@@ -1,5 +1,5 @@
-public class BCUtility {
-    public static func makeCardArray(from input: String) -> [BCCard]? {
+class BCUtility {
+    static func makeCardArray(from input: String) -> [BCCard]? {
         var cards: [BCCard] = Array()
         let cardStrings = input.split(separator: " ")
         

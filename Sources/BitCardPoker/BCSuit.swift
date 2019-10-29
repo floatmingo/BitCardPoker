@@ -1,7 +1,15 @@
+/// An enum that represents a the four French playing cards suits.
 public enum BCSuit: UInt8, Comparable, CaseIterable {
+    /// The suit of hearts (♥)
     case hearts
+    
+    /// The suit of diamonds (♦)
     case diamonds
+    
+    /// The suit of clubs (♣)
     case clubs
+    
+    /// The suit of spades (♠)
     case spades
     
     public static func < (lhs: BCSuit, rhs: BCSuit) -> Bool {
@@ -33,6 +41,7 @@ extension BCSuit: CustomStringConvertible {
         }
     }
     
+    /// The string character representing the suit
     public var character: String {
         get {
             switch self {

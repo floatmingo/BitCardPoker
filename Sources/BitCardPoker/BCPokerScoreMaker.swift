@@ -1,9 +1,9 @@
 public typealias BCPokerScore = UInt32
 
-public struct BCPokerScoreMaker {
+struct BCPokerScoreMaker {
     static let none: BCPokerScore = 0
     
-    public  static func category(of score: BCPokerScore) -> BCPokerCategory? {
+    public static func category(of score: BCPokerScore) -> BCPokerCategory? {
         return BCPokerCategory(rawValue: score >> (4 * 5))
     }
     
