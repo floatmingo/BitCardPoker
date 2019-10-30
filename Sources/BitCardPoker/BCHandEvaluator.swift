@@ -54,10 +54,9 @@ class BCHandEvaluator {
 
     // Utilities
     static func calculateStraightFlush(_ ranks: Ranks, _ suits: Suits) -> BCPokerScore {
-        if (calculateFlush(ranks, suits) != BCPokerScoreMaker.none && calculateStraight(ranks) != BCPokerScoreMaker.none) {
-            return BCPokerScoreMaker.makeFor(type: .straightFlush, ranks.4)
+        if isFlush(suits), let rank = isStraight(ranks) {
+            return BCPokerScoreMaker.makeFor(type: .straightFlush, rank)
         }
-        
         return BCPokerScoreMaker.none
     }
 
@@ -110,32 +109,19 @@ class BCHandEvaluator {
     }
 
     static func calculateFlush(_ ranks: Ranks, _ suits: Suits) -> BCPokerScore {
-        if suits.0 == suits.4 {
+        if isFlush(suits) {
             return BCPokerScoreMaker.makeFor(type: .flush, ranks.4, ranks.3, ranks.2, ranks.1, ranks.0)
         }
 
         return BCPokerScoreMaker.none
     }
-
+    
     static func calculateStraight(_ ranks: Ranks) -> BCPokerScore {
-        if (ranks.4 == .ace) {
-            if ranks.0 == .two && ranks.1 == .three && ranks.2 == .four && ranks.3 == .five {
-                return BCPokerScoreMaker.makeFor(type: .straight, BCRank.five)
-            }
-            
-            if ranks.0 == .ten && ranks.1 == .jack && ranks.2 == .queen && ranks.3 == .king {
-                return BCPokerScoreMaker.makeFor(type: .straight, BCRank.ace)
-            }
-            
-            return BCPokerScoreMaker.none
+        if let rank = isStraight(ranks) {
+            return BCPokerScoreMaker.makeFor(type: .straight, rank)
         }
         
-        if ranks.1 != ranks.0.next() { return BCPokerScoreMaker.none }
-        if ranks.2 != ranks.1.next() { return BCPokerScoreMaker.none }
-        if ranks.3 != ranks.2.next() { return BCPokerScoreMaker.none }
-        if ranks.4 != ranks.3.next() { return BCPokerScoreMaker.none }
-        
-        return BCPokerScoreMaker.makeFor(type: .straight, ranks.4)
+        return BCPokerScoreMaker.none
     }
 
     static func calculateThreeOfAKind(_ ranks: Ranks) -> BCPokerScore {
@@ -248,5 +234,22 @@ class BCHandEvaluator {
     
     static func calculateHighCard(_ ranks: Ranks) -> BCPokerScore {
         return BCPokerScoreMaker.makeFor(type: .highCard, ranks.4, ranks.3, ranks.2, ranks.1, ranks.0)
+    }
+    
+    // Helpers
+    private static func isStraight(_ ranks: Ranks) -> BCRank? {
+        if ranks.0 == .two && ranks.1 == .three && ranks.2 == .four && ranks.3 == .five && ranks.4 == .ace {
+            return .five
+        }
+
+        if ranks.1 == ranks.0.next() && ranks.2 == ranks.1.next() && ranks.3 == ranks.2.next() && ranks.4 == ranks.3.next() {
+            return ranks.4
+        }
+        
+        return nil
+    }
+    
+    private static func isFlush(_ suits: Suits) -> Bool {
+        return suits.0 == suits.4
     }
 }

@@ -77,6 +77,9 @@ class BCHandEvaluatorTests: XCTestCase {
         
         let regularStraightFlush = mockUp(from: "8C 7C 6C 5C 4C")!
         XCTAssertEqual(BCHandEvaluator.calculateStraightFlush(regularStraightFlush.ranks, regularStraightFlush.suits), BCPokerScoreMaker.makeFor(type: .straightFlush, .eight))
+        
+        let lowStraightFlush = mockUp(from: "2S 4S AS 5S 3S")!
+        XCTAssertEqual(BCHandEvaluator.calculateStraightFlush(lowStraightFlush.ranks, lowStraightFlush.suits), BCPokerScoreMaker.makeFor(type: .straightFlush, .five))
     }
 
     func testFourOfAKind() {
